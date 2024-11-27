@@ -4,13 +4,205 @@
   margin: 0;
 }
 
-html,
 body {
-  height: 100%;
+  color: #F0F1F1;
+  background-color: #2f5180;
 }
 
-img,
-video {
+body > p {
+  text-align: center;
+  font-size: 6rem;
+  margin: 16px 0 50px 0;
+}
+
+body > div {
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 12px;
+}
+
+img {
   max-width: 100%;
   height: auto;
+}
+
+main {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* SEARCH */
+main > .search {
+  position: relative;
+}
+
+main > .search > #location {
+  color: #F0F1F1;
+  background-color: #34445e;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  height: 48px;
+  padding: 1rem 90px 1rem 1rem;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+}
+
+#location::placeholder {
+  color: #F0F1F1;
+}
+
+main > .search > button#search {
+  color: #F0F1F1;
+  font-size: 1.5rem;
+  line-height: 48px;
+  padding: 0 24px;
+  background-color: #2a5ba5;
+  border: none;
+  border-radius: 0 12px 12px 0;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: -1px;
+}
+
+/* CURRENT WEATHER */
+main > .current {
+  padding: 0 1rem;
+  display: flex;
+}
+
+.current > div:first-child {
+  width: 80%;
+}
+
+.current > div:last-child{
+  text-align: center;
+  align-self: center;
+  width: 20%;
+}
+
+.current > div:first-child > .location {
+  font-size: 2rem;
+}
+
+.current > div:first-child > p:nth-child(2) {
+  font-size: 1.25rem;
+}
+
+.current > div:first-child > .temperature {
+  font-size: 3.5rem;
+  margin-top: 40px;
+}
+
+.current > div:last-child > img{
+  width: 8rem;
+}
+
+/* HOURLY FORECAST */
+main > .hourly {
+  background-color: #34445e;
+  padding: 1.25rem;
+  border-radius: 16px;
+}
+
+.hourly > p {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.hourly > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hourly-container {
+  text-align: center;
+  width: fit-content;
+}
+
+.hourly-container > img {
+  margin: 8px 0;
+}
+
+.hourly-container > .temperature {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.vertical-line {
+  background-color: #F0F1F1;
+  width: 1px;
+  height: auto;
+  margin: 8px 0;
+}
+
+/* AIR CONDITIONS */
+main > .air-conditions {
+  background-color: #34445e;
+  padding: 1.25rem;
+  border-radius: 16px;
+}
+
+.air-conditions > p {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+
+.air-conditions > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.air-conditions > div > div {
+  width: 48%;
+}
+
+.air-conditions > div > div > p:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.air-conditions > div > div > p:first-child > span {
+  margin-right: 8px;
+}
+
+.air-conditions > div > div > p:last-child{
+  font-size: 2rem;
+  margin: 4px 0 0 32px;
+}
+
+/* DAY FORECAST */
+aside {
+  background-color: #34445e;
+  width: 20%;
+  height: auto;
+  padding: 1.25rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+aside > p {
+  font-size: 1.25rem;
+}
+
+aside > .day {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day > div  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
