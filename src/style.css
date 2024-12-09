@@ -71,6 +71,10 @@ main > .search > button#search {
   right: -1px;
 }
 
+main > .search > button#search:hover {
+  background-color: #5478ad;
+}
+
 /* CURRENT WEATHER */
 main > .current {
   padding: 0 1rem;
