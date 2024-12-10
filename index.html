@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+      <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Material+Symbols+Rounded&family=Material+Symbols+Sharp" rel="stylesheet">
+            <!-- <link rel="stylesheet" href="./style.css"> -->
+            <title></title>
+      <script defer src="bundle.js"></script></head>
+      <body>
+            <p>Weatherly</p>
+            <div>
+                  <main>
+                        <div class="search">
+                              <input type="text" id="location" name="location" placeholder="Search for cities">
+                              <button id="search" class="material-symbols-outlined">
+                                    search
+                              </button>
+                        </div>
+                        <div class="current">
+                              <div>
+                                    <p class="location">Bangkok</p>
+                                    <p>Chance of rain: 
+                                          <span class="precipitation">0%</span>
+                                    </p>
+                                    <p class="temperature">33°C</p>
+                              </div>
+                              <div>
+                                    <img src="./icons/clear-day.png" alt="icon">
+                                    <p class="icon-label">Sunny</p>
+                              </div>
+                        </div>
+                        <div class="hourly">
+                              <p>Today's Forecast</p>
+                              <div>
+                                    <!-- <div class="hourly-container">
+                                          <p class="time">6:00 AM</p>
+                                          <img src="./icons/clear-day.png" alt="icon">
+                                          <p class="temperature">33&deg;C</p>
+                                    </div> -->
+                                    <!-- <div class="vertical-line"></div> -->
+                              </div>
+                        </div>
+                        <div class="air-conditions">
+                              <p>Air Conditions</p>
+                              <div>
+                                    <div class="real-feel">
+                                          <p><span class="material-symbols-outlined">      
+                                          device_thermostat</span> Real Feel</p>
+                                          <p class="temperature">33&deg;C</p>
+                                    </div>
+                                    <div class="wind">
+                                          <p><span class="material-symbols-outlined">
+                                          air</span> Wind</p>
+                                          <p class="speed">0.2 km/h</p>
+                                    </div>
+                                    <div class="rain">
+                                          <p><span class="material-symbols-outlined">
+                                          water_drop</span> Rain</p>
+                                          <p class="chance">0%</p>
+                                    </div>
+                                    <div class="uv-index">
+                                          <p><span class="material-symbols-outlined">
+                                          light_mode</span> UV Index</p>
+                                          <p class="level">3</p>  
+                                    </div>
+                              </div>
+                        </div>
+                  </main>
+                  <aside>
+                        <p>7-Day Forecast</p>
+                        <!-- <div class="day">
+                              <p class="date">Today</p>
+                              <div>
+                                    <img src="./icons/clear-day.png" alt="icon">
+                                    <p class="label">Sunny</p>
+                              </div>
+                              <p class="temp">36/12</p>
+                        </div> -->
+                  </aside> 
+            </div> 
+            <div class="loader-container">
+                  <div class="loader"></div>
+            </div>
+      </body>
+</html>
