@@ -3,33 +3,23 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 const APIKey = '5YQ43Q8F29YCE4N6Z4DVAWAY9';
-let location = 'Bangkok';
+let location = 'Tokyo';
 
 document.querySelector('#search').addEventListener('click', function () {
-  location = document.querySelector('#location').value;
-  getWeather().then(function (data) {
-    reset();
-
-    currentWeather(
-      data.address,
-      data.currentConditions.precipprob,
-      data.currentConditions.temp,
-      data.currentConditions.icon,
-      data.currentConditions.conditions,
-    );
-
-    airConditions(
-      data.currentConditions.feelslike,
-      data.currentConditions.windspeed,
-      data.currentConditions.precip,
-      data.currentConditions.uvindex,
-    );
-
-    generateHr(data.days[0]);
-
-    generateDays(data.days);
-  });
+  searchWeather();
 });
+
+document.querySelector('#location').addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    searchWeather();
+  }
+});
+
+function searchWeather() {
+  toggleLoader();
+  location = document.querySelector('#location').value;
+  presentWeather();
+}
 
 function generateHr(dayData) {
   const startHour = 6;
@@ -55,16 +45,59 @@ function generateDays(days) {
   });
 }
 
+const presentData = (data) => {
+  reset();
+
+  currentWeather(
+    data.address,
+    data.currentConditions.precipprob,
+    data.currentConditions.temp,
+    data.currentConditions.icon,
+    data.currentConditions.conditions,
+  );
+
+  airConditions(
+    data.currentConditions.feelslike,
+    data.currentConditions.windspeed,
+    data.currentConditions.precip,
+    data.currentConditions.uvindex,
+  );
+
+  generateHr(data.days[0]);
+
+  generateDays(data.days);
+};
+
+const presentWeather = () => {
+  getWeather()
+    .then(function (data) {
+      presentData(data);
+    })
+    .catch(() => {
+      if (location === '') {
+        alert('Search Bar Empty');
+      } else {
+        alert('Location not found');
+      }
+    })
+    .finally(() => {
+      toggleLoader();
+    });
+};
+
 async function getWeather() {
   try {
     const weather = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=5YQ43Q8F29YCE4N6Z4DVAWAY9&contentType=json`,
       {mode: 'cors'},
     );
+    if (!weather.ok) {
+      throw new Error(`HTTP error! status: ${weather.status}`);
+    }
     const weatherData = await weather.json();
     return weatherData;
   } catch (error) {
-    console.error('Error with fetching data:', error);
+    return Promise.reject(error);
   }
 }
 
@@ -151,36 +184,20 @@ const dailyForecast = (day, img, conditions, maxTemp, minTemp) => {
   days.appendChild(dayContainer);
 };
 
-function reset() {
+const toggleLoader = () => {
+  const loader = document.querySelector('.loader-container');
+  loader.classList.toggle('loader-hidden');
+};
+
+const reset = () => {
   document.querySelector('.hourly > div').innerText = '';
-  const days = document.querySelector('aside');
+  const day = document.querySelector('aside');
   const label = document.createElement('p');
-  days.innerText = '';
+  day.innerText = '';
   label.innerText = '7-Day Forecast';
-  days.appendChild(label);
-}
+  day.appendChild(label);
+};
 
 (function () {
-  getWeather().then(function (data) {
-    reset();
-
-    currentWeather(
-      data.address,
-      data.currentConditions.precipprob,
-      data.currentConditions.temp,
-      data.currentConditions.icon,
-      data.currentConditions.conditions,
-    );
-
-    airConditions(
-      data.currentConditions.feelslike,
-      data.currentConditions.windspeed,
-      data.currentConditions.precip,
-      data.currentConditions.uvindex,
-    );
-
-    generateHr(data.days[0]);
-
-    generateDays(data.days);
-  });
+  presentWeather();
 })();
